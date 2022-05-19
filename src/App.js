@@ -1,14 +1,25 @@
+import { useState, useCallback } from 'react';
 import './App.css';
 import KanjiAdder from './components/KanjiAdder';
-import KanjiCard from './components/KanjiCard';
 import Header from './Header';
+import KanjiCollection from './KanjiCollection';
+import Login from './Login';
+import { useStateValue } from './StateProvider';
 
 function App() {
+  const [{ user }, dispatch] = useStateValue();
+  const [showAdder, setShowAdder] = useState(false);
+  const [showResMenu, setShowResMenu] = useState(false);
+  const handleToggle = useCallback(() => setShowAdder(prevShow => !prevShow), [])
+  const handleResToggle = useCallback(() => setShowResMenu(prevShow => !prevShow), [])
+
   return (
     // BEM naming convention
     <div className="app">
-        {/* Header */}
-        <Header />
+        {!user ? ( <h1><Login /></h1> ) : ( <>       {/* Header */}
+        <Header show={showResMenu} onToggle={handleToggle} onResToggle={handleResToggle} />
+        <KanjiAdder show={showAdder} onToggle={handleToggle} />
+        
 
         {/* App Body */}
         <div className="app__body">
@@ -26,17 +37,11 @@ function App() {
               最近習った漢字の要約
             </p>
             
-            <div className="app__kanjislide">
-            <KanjiCard kanji="時" kun="とき、-とき" on="ジ" translate="time, hour" level="N5, grade 2"/>
-            <KanjiCard kanji="火" kun="ひ、 -び、 ほ-" on="カ" translate="fire" level="N5, grade １"/>
-            <KanjiCard kanji="水" kun="みず、 みず-" on="スイ" translate="water" level="N5, grade 1"/>
-            <KanjiCard kanji="議" on="ギ" translate="deliberation" level="N3, grade 4"/>
-            </div>
-
-            <KanjiAdder />
+            <KanjiCollection />
 
           </div>
-        </div>   
+        </div>
+        </>)}
     </div>
   );
 }

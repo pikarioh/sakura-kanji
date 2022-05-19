@@ -1,15 +1,29 @@
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
 .kanjicard__body {
     display: flex;
     flex-direction: column;
     background-color: rgb(245, 245, 245);
-    height:fit-content;
+    width: 9rem;
+    height:20rem;
     padding: 20px 15px 20px;
     border-radius: 8px;
     box-shadow: 0px 5px 8px -9px #000000d8;
-    margin-right: 15px;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    animation: fadeIn linear 0.3s;
+}
+
+.kanjicard__body:hover {
+    background-color: rgb(227, 227, 227);
+    cursor: pointer;
 }
 
 .kanjicard__kanji {
+    font-family: 'Zen Antique', serif;
     display: flex;
     justify-content: center;
     border-radius: 8px;
@@ -19,7 +33,7 @@
     font-size: 120px;
 }
 
-.kanjicard__translate > h6 {
+.kanjicard__meaning > h6 {
     font-size: 20px;
 }
 

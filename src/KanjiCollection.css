@@ -1,0 +1,15 @@
+.kanjicollection {
+    margin: 40px 0 20px;
+}
+
+.kanjicollection__container {
+    display: flex;
+    justify-content: center;
+}
+
+.kanjicollection__cards {
+    width:fit-content;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}
