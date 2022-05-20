@@ -33,10 +33,50 @@
     font-size: 120px;
 }
 
+.kanjicard__kunyomi {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.kanjicard__kunyomi > p {
+    overflow: scroll;
+}
+
+.kanjicard__onyomi {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.kanjicard__onyomi > p {
+    overflow: scroll;
+}
+
+.kanjicard__kunyomi > p::-webkit-scrollbar{
+    display: none;
+}
+
+.kanjicard__meaning {
+    overflow: hidden;
+    white-space: nowrap;  
+}
+
 .kanjicard__meaning > h6 {
     font-size: 20px;
+    overflow: scroll;
+}
+
+.kanjicard__meaning > h6::-webkit-scrollbar{
+    display: none;
 }
 
 .kanjicard__level > p{
     color: #989898;
+}
+
+@media only screen and (max-width: 380px) {
+    .kanjicard__body {
+        width: 7.1rem;
+        height:18rem;
+        margin-right: 0.5rem;
+    }
 }

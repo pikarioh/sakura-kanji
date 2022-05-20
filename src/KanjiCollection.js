@@ -3,6 +3,7 @@ import './KanjiCollection.css'
 import KanjiCard from './components/KanjiCard';
 import { useState } from 'react';
 import db from './firebase';
+import Kanji from './models/kanji';
 
 function KanjiCollection() {
 
@@ -19,21 +20,11 @@ function KanjiCollection() {
 
   return (
     <div className='kanjicollection'>
-        <div className="kanjicollection__container">
+      <div className="kanjicollection__container">
         <div className="kanjicollection__cards">
-            {kanjicards.map((kanjicards) => (
-                <KanjiCard
-                    kanji={kanjicards.data.kanji} 
-                    kunyomi={kanjicards.data.kunyomi} 
-                    onyomi={kanjicards.data.onyomi} 
-                    meaning={kanjicards.data.meaning} 
-                    level={kanjicards.data.level}
-                    timestamp={kanjicards.data.timestamp}
-                    author={kanjicards.data.author}
-                />
-            ))}
+          {kanjicards.map(card => <KanjiCard key={card.id} kanji={Kanji.fromJishoJson(card.data)} />)}
         </div> 
-        </div>      
+      </div>      
     </div>
   )
 }

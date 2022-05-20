@@ -1,9 +1,12 @@
 .kanjicollection {
+    display: flex;
     margin: 40px 0 20px;
+    justify-content: center;
 }
 
 .kanjicollection__container {
     display: flex;
+    width: 1520px;
     justify-content: center;
 }
 
@@ -12,4 +15,48 @@
     display: flex;
     justify-content: left;
     flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 1600px) {
+    .kanjicollection__container {
+        width: 1330px;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .kanjicollection__container {
+        width: 1140px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .kanjicollection__container {
+        width: 950px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .kanjicollection__container {
+        width: 760px;
+    }
+}
+
+@media only screen and (max-width: 820px) {
+    .kanjicollection__container {
+        width: 570px;
+    }
+}
+
+@media only screen and (max-width: 630px) {
+    .kanjicollection__container {
+        width: 380px;
+        margin-left: 10px;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .kanjicollection__container {
+        width: 320px;
+        margin-left: 10px;
+    }
 }

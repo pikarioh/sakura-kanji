@@ -1,21 +1,44 @@
-import React from 'react';
 import "./Header.css";
-import { useState, useCallback } from 'react';
 
-import SearchIcon from '@mui/icons-material/Search';
-import HomeIcon from '@mui/icons-material/Home';
-import CollectionsBookmarkOutlinedIcon from '@mui/icons-material/CollectionsBookmarkOutlined';
-import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
-import { Avatar, IconButton } from '@mui/material';
+import React from 'react';
 import AddIcon from '@mui/icons-material/Add';
+import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
+import CollectionsBookmarkOutlinedIcon from '@mui/icons-material/CollectionsBookmarkOutlined';
+import HomeIcon from '@mui/icons-material/Home';
+import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import SearchIcon from '@mui/icons-material/Search';
+
+import {
+    Avatar,
+    Button,
+    IconButton,
+    Link,
+    CircularProgress,
+} from '@mui/material';
+
+
 import SakuraLogo from './assets/sakura_logo.png';
 import { useStateValue } from './StateProvider';
-import MenuIcon from '@mui/icons-material/Menu';
+import { useLocation, useNavigate, Link as RouterLink } from "react-router-dom";
 
 function Header({ onToggle , onResToggle , show }) {
-    const [{ user }, dispatch] = useStateValue();
-   
+  const [{ user }, dispatch] = useStateValue();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const LinkWithIcon = (props) => (
+    <Link to={props.link} component={RouterLink} >
+      <div className={[
+          'header__option',
+          (location.pathname == props.link) ? ' header__option--active' : ''
+        ].join(' ')
+      }>
+      {props.icon}
+      </div>
+    </Link>
+  );
+
   return (
     <div className="header">
         <div className="header__left">
@@ -27,28 +50,27 @@ function Header({ onToggle , onResToggle , show }) {
         </div>
             
         <div className="header__center">
-            <div className="header__option header__option--active">
-                <HomeIcon fontSize='large'/>
-            </div>
-            <div className="header__option">
-                <BookOutlinedIcon fontSize='large'/>
-            </div>
-            <div className="header__option">
-                <CollectionsBookmarkOutlinedIcon fontSize='large'/>
-            </div>
+            <LinkWithIcon link="/" icon={<HomeIcon fontSize='large'/>}/>
+            <LinkWithIcon link="/collection" icon={<BookOutlinedIcon fontSize='large'/>}/>
+            <LinkWithIcon link="/review" icon={<CollectionsBookmarkOutlinedIcon fontSize='large'/>}/>
         </div>
 
         <div className="header__right">
-            <div className="header__info">
+            {user != null ? (
+                <div className="header__info">
                 <Avatar src={user.photoURL} />
                 <h4>{user.displayName}</h4>
+                <IconButton onClick={onToggle} >
+                    <AddIcon />
+                </IconButton>
+                <IconButton>
+                    <NotificationsIcon />
+                </IconButton>
             </div>
-            <IconButton onClick={onToggle} >
-                <AddIcon />
-            </IconButton>
-            <IconButton>
-                <NotificationsIcon />
-            </IconButton>
+            ) : (
+                <div className='loginbutton'><Button onClick={_ => navigate('/login')}>ロクイン</Button></div>
+            )}
+            
         </div>
 
         <div className="header__res">
@@ -76,10 +98,14 @@ function Header({ onToggle , onResToggle , show }) {
                 </div>
 
                 <div className="header__resmenubottom">
-                    <div className="header__info">
+                    {user != null ? (
+                        <div className="header__info">
                         <Avatar src={user.photoURL} />
                         <h4>{user.displayName}</h4>
                     </div>
+                    ) : (
+                        <Button onClick={_ => navigate('/login')}>ロクイン</Button>
+                    )}
                     <div className='header__resoptionbtm' onClick={(e)=>{onToggle(); onResToggle();}} >
                         <AddIcon fontSize='large'/>
                         漢字追加
@@ -91,12 +117,10 @@ function Header({ onToggle , onResToggle , show }) {
                 </div>
             </div>
             
-        
-
         </>)}
         
     </div>
   )
 }
 
-export default Header
+export default Header;

@@ -1,30 +1,36 @@
 import React from 'react'
-import './KanjiCard.css'
+import './KanjiCard.css';
+import Kanji from '../models/kanji';
 
-function KanjiCard({ kanji, kunyomi, onyomi, meaning, level, timestamp, author}) {
+class KanjiProps {
+    kanji: Kanji;
+}
+
+function KanjiCard(props: KanjiProps) {
+  const kanji = props.kanji;
   return (
     <div>
         <div className="kanjicard__body">
             <div className="kanjicard__kanji">
-                <h1>{kanji}</h1>
+                <h1>{kanji.kanji}</h1>
             </div>
-            {kunyomi && (
+            {kanji.kunyomi.length != 0 && (
                 <div className="kanjicard__kunyomi">
                     <h3>【訓】</h3>
-                    <p>{kunyomi}</p>
+                    <p>{kanji.kunyomi.join('、　')}</p>
                 </div>
             )}
-            {onyomi && (
+            {kanji.onyomi.length != 0 && (
                 <div className="kanjicard__kunyomi">
                     <h3>【音】</h3>
-                    <p>{onyomi}</p>
+                    <p>{kanji.onyomi.join('、　')}</p>
                 </div>
             )}
             <div className="kanjicard__meaning">
-                <h6>{meaning}</h6>
+                <h6>{kanji.meaning.join(', ')}</h6>
             </div>
             <div className="kanjicard__level">
-                <p>{level}</p>
+                <p>N{kanji.level}{[null, undefined, ''].includes(kanji.grade) ? '' : `, ${kanji.grade}`}</p>
             </div>
         </div>
     </div>

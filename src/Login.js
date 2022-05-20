@@ -5,22 +5,19 @@ import { Button } from '@mui/material';
 import { auth, provider } from "./firebase";
 import { useStateValue } from './StateProvider';
 import { actionTypes } from "./reducer";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
     const [state, dispatch] = useStateValue();
+    const navigate = useNavigate();
 
-    const signIn = () => {
-        // firebase sign-in
-        auth
-        .signInWithPopup(provider)
-        .then(result => {
-            dispatch({
-                type: actionTypes.SET_USER,
-                user: result.user,
-            })
-            console.log(result.user);
+    const signIn = async () => {
+        const result = await auth.signInWithPopup(provider);
+        dispatch({
+            type: actionTypes.SET_USER,
+            user: result.user,
         })
-        .catch((error) => alert(error.message));
+        navigate('/');
     }
 
   return (

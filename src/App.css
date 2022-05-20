@@ -1,24 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Zen+Antique&display=swap');
-
-.app__body {
+/* .app__body {
     display: flex;
-}
-
-.app__sidebar {
-    width: 220px;
-    height: 95vh;
-    background-color: rgb(255, 240, 247);
 }
 
 .app__display {
     padding: 40px 0 20px;
-    padding-left: 40px;
+    padding-left: 30px;
     padding-right: 20px;
     width: 100vw;
     height: 100vh;
+    overflow: scroll;
+    background-color: aqua;
 }
 
 .app__display > h1 {
     font-family: 'Zen Antique', serif;
     font-size: 40px;
 }
+
+@media only screen and (max-width: 420px) {
+    .app__display {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .app__display > h1 {
+        padding-left: 20px;
+    }
+    .app__display > p {
+        padding-left: 20px;
+    }
+} */
