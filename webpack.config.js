@@ -13,6 +13,7 @@ module.exports = {
     devtool: 'inline-source-map',
     devServer: {
         static: './dist',
+        historyApiFallback: true,
     },
     module: {
         rules: [

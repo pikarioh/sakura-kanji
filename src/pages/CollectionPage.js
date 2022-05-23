@@ -1,4 +1,5 @@
 import React from 'react'
+import JLPTDisplay from '../components/JLPTDisplay';
 import KanjiCollection from '../KanjiCollection'
 import './CollectionPage.css'
 
@@ -7,11 +8,17 @@ function CollectionPage() {
     <div>
         <div className="page__kanjicollection">
             <div className="page__kc-header">
-                <h1>コレクション</h1>
-                <p>最近習った漢字の要約</p>
+              <h1>あなたの漢字本</h1>
+              <p>最近習った漢字の要約</p>
             </div>
-            <KanjiCollection />            
+            <KanjiCollection />  
+            
+            <div className="page__kc-header">
+              <h1>N５ 漢字</h1>
+            </div>
+            <JLPTDisplay />          
           </div>
+          
     </div>
   )
 }

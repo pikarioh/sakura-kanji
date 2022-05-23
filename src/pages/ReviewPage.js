@@ -9,7 +9,7 @@ function ReviewPage() {
   const API_ENDPOINT = 'https://sakura-kanji-backend.herokuapp.com';
 
   const sentence = `
-  今夜はとてもお疲れましたね。
+  一二三四五六七八九十
   `;
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function ReviewPage() {
   return (
     <div className="page__review">
         <div className="page__rp-header">
-            <h1>レビュー</h1>
+            <h1>N1 漢字</h1>
             {kanji && kanji.map((k, i) => <KanjiCard key={i} kanji={k}/>)}
         </div>
     </div>

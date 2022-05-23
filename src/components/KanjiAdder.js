@@ -29,11 +29,11 @@ function KanjiAdder({ show, onToggle }) {
 
     db.collection('kanjicards').add({
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      kanji: kanji,
-      kunyomi, kunyomi,
-      onyomi: onyomi,
+      query: kanji,
+      kunyomi: [kunyomi],
+      onyomi: [onyomi],
       meaning: meaning,
-      level: level,
+      jlptLlevel: level,
       author: user.displayName
     })
 
